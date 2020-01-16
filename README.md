@@ -48,6 +48,10 @@ This folder contains anything related to unusual headers
 #### Service
 Objects that don't fit any pattern
 
+-----
+
+### Headers
+
 ## Contributing
 
 ## License
