@@ -11,7 +11,8 @@ module Uploadcare
     # https://uploadcare.com/api-refs/rest-api/v0.5.0/#operation/fileInfo
 
     def info(uuid)
-      get(path: "files/#{uuid}/", headers: SimpleAuthenticationHeader.call)
+      headers = AuthenticationHeader.call(method: 'GET', uri: "/files/#{uuid}/")
+      response = get(path: "files/#{uuid}/", headers: headers)
     end
 
     # 'copy' method is used to copy original files or their modified versions to default storage.
@@ -19,7 +20,10 @@ module Uploadcare
     # https://uploadcare.com/api-refs/rest-api/v0.5.0/#operation/copyFile
 
     def copy(**options)
-      post(path: 'files/', headers: SimpleAuthenticationHeader.call, body: options.to_json)
+      body = options.to_json
+      headers = AuthenticationHeader.call(method: 'POST', uri: '/files/',
+        content: body)
+      post(path: 'files/', headers: headers, body: body)
     end
 
     alias _delete delete
@@ -27,14 +31,16 @@ module Uploadcare
     # https://uploadcare.com/api-refs/rest-api/v0.5.0/#operation/deleteFile
 
     def delete(uuid)
-      _delete(path: "files/#{uuid}/", headers: SimpleAuthenticationHeader.call)
+      headers = AuthenticationHeader.call(method: 'DELETE', uri: "/files/#{uuid}/")
+      _delete(path: "files/#{uuid}/", headers: headers)
     end
 
     # Store a single file, preventing it from being deleted in 2 weeks
     # https://uploadcare.com/api-refs/rest-api/v0.5.0/#operation/storeFile
 
     def store(uuid)
-      put(path: "files/#{uuid}/storage/", headers: SimpleAuthenticationHeader.call)
+      headers = AuthenticationHeader.call(method: 'PUT', uri: "/files/#{uuid}/storage/")
+      put(path: "files/#{uuid}/storage/", headers: headers)
     end
   end
 end
