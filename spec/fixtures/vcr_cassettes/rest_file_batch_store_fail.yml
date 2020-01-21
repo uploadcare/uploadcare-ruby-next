@@ -12,9 +12,9 @@ http_interactions:
       Accept:
       - application/vnd.uploadcare-v0.5+json
       Date:
-      - Mon, 20 Jan 2020 15:53:29 GMT
+      - Wed, 22 Jan 2020 13:36:49 GMT
       Authorization:
-      - Uploadcare c8499ee6dc44194c00d2:2ba1ca30ae1b3a52145c5479832ba0701932e2ad
+      - Uploadcare c8499ee6dc44194c00d2:9cb84ef5967bb31f8443ebdac7628ad461151a16
       Connection:
       - close
       Host:
@@ -27,7 +27,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2020 15:53:30 GMT
+      - Wed, 22 Jan 2020 13:36:50 GMT
       Content-Type:
       - application/vnd.uploadcare-v0.5+json
       Content-Length:
@@ -52,5 +52,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"status":"ok","problems":{"other_nonexistent":"Invalid","nonexistent":"Invalid"},"result":[]}'
     http_version: 
-  recorded_at: Mon, 20 Jan 2020 15:53:30 GMT
+  recorded_at: Wed, 22 Jan 2020 13:36:50 GMT
 recorded_with: VCR 5.0.0
