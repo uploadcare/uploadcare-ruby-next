@@ -12,7 +12,7 @@ module Uploadcare
 
     def info(uuid)
       headers = AuthenticationHeader.call(method: 'GET', uri: "/files/#{uuid}/")
-      response = get(path: "files/#{uuid}/", headers: headers)
+      get(path: "files/#{uuid}/", headers: headers)
     end
 
     # 'copy' method is used to copy original files or their modified versions to default storage.
@@ -22,7 +22,7 @@ module Uploadcare
     def copy(**options)
       body = options.to_json
       headers = AuthenticationHeader.call(method: 'POST', uri: '/files/',
-        content: body)
+                                          content: body)
       post(path: 'files/', headers: headers, body: body)
     end
 

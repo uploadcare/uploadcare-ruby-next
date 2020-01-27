@@ -1,20 +1,21 @@
-# This object returns headers needed for authentication
-# This authentication method is more secure, but more tedious
-# https://uploadcare.com/docs/api_reference/rest/requests_auth/#auth-uploadcare
+# frozen_string_literal: true
 
 require 'digest/md5'
 
 module Uploadcare
+  # This object returns headers needed for authentication
+  # This authentication method is more secure, but more tedious
+  # https://uploadcare.com/docs/api_reference/rest/requests_auth/#auth-uploadcare
   class SecureAuthHeader
     def self.call(method: 'GET', content: '', content_type: 'application/json', uri: '')
       @method = method
       @content = content
       @content_type = content_type
       @uri = uri
-      @date_for_header = self.timestamp
+      @date_for_header = timestamp
       {
         'Date': @date_for_header,
-        'Authorization': "Uploadcare #{PUBLIC_KEY}:#{self.signature}"
+        'Authorization': "Uploadcare #{PUBLIC_KEY}:#{signature}"
       }
     end
 
