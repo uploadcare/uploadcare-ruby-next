@@ -12,6 +12,7 @@ module Uploadcare
       body = { 'target_url': target_url, 'event': event, 'is_active': is_active }.to_json
       post(uri: '/webhooks/', content: body)
     end
+
     # Returns array (not paginated list) of webhooks
     # https://uploadcare.com/docs/api_reference/rest/webhooks/#get-list
 
