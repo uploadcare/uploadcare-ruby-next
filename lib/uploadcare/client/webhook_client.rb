@@ -4,39 +4,33 @@
 
 module Uploadcare
   # client for webhook management
-  class WebhookClient < ApiStruct::Client
-    rest_api
-
+  class WebhookClient < RestClient
     # Create webhook
     # https://uploadcare.com/docs/api_reference/rest/webhooks/#subscribe
 
     def create(target_url, event: 'file.uploaded', is_active: true)
       body = { 'target_url': target_url, 'event': event, 'is_active': is_active }.to_json
-      headers = AuthenticationHeader.call(method: 'POST', uri: '/webhooks/', content: body)
-      post(path: 'webhooks/', headers: headers, body: body)
+      post(uri: '/webhooks/', content: body)
     end
     # Returns array (not paginated list) of webhooks
     # https://uploadcare.com/docs/api_reference/rest/webhooks/#get-list
 
     def list
-      headers = AuthenticationHeader.call(method: 'GET', uri: '/webhooks/')
-      get(path: 'webhooks/', headers: headers)
+      get(uri: '/webhooks/', headers: headers)
     end
 
     # https://uploadcare.com/docs/api_reference/rest/webhooks/#unsubscribe
 
     def delete(name)
       body = { 'name': name }.to_json
-      headers = AuthenticationHeader.call(method: 'POST', uri: '/webhooks/unsubscribe/', content: body)
-      post(path: 'webhooks/unsubscribe/', headers: headers, body: body)
+      post(uri: '/webhooks/unsubscribe/', headers: headers, content: body)
     end
 
     # https://uploadcare.com/docs/api_reference/rest/webhooks/#subscribe-update
 
     def update(id, **options)
       body = options.to_json
-      headers = AuthenticationHeader.call(method: 'POST', uri: "/webhooks/#{id}/", content: body)
-      post(path: "webhooks/#{id}/", headers: headers, body: body)
+      post(uri: "/webhooks/#{id}/", content: body)
     end
   end
 end
