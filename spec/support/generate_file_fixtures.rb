@@ -15,6 +15,6 @@ def generate_big_file
     source_file = File.open('spec/fixtures/kitten.jpeg')
     destination = File.open('spec/fixtures/big.jpeg', 'w')
     destination.write(source_file.read)
-    destination.write('a' * 10 * 1024 * 1024 )
+    destination.write('a' * 10 * 1024 * 1024)
   end
 end

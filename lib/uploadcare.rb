@@ -9,7 +9,6 @@ require 'uploadcare_configuration'
 require 'default_configuration'
 require 'entity/entity'
 Gem.find_files('entity/**/*.rb').each { |path| require path }
-Gem.find_files('service/**/*.rb').each { |path| require path }
 require 'api/api'
 
 # Ruby wrapper for Uploadcare API
