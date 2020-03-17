@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'retries'
+require 'param/upload/upload_params_generator'
 
 module Uploadcare
   module Client

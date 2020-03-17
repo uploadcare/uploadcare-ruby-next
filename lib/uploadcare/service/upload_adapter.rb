@@ -21,8 +21,6 @@ module Uploadcare
       end
     end
 
-    protected
-
     def self.upload_file(file, **options)
       response = UploadClient.new.upload_many([file], **options)
       handle_upload_errors(response)

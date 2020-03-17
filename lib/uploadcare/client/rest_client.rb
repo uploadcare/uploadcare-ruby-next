@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'uploadcare/concerns/error_handler'
-require 'uploadcare/concerns/throttle_handler'
+require 'uploadcare/concern/error_handler'
+require 'uploadcare/concern/throttle_handler'
 
 module Uploadcare
   module Client
@@ -24,8 +24,10 @@ module Uploadcare
 
       def request(method: 'GET', uri:, **options)
         headers = AuthenticationHeader.call(method: method.upcase, uri: uri, **options)
-        handle_throttling { send('api_struct_' + method.downcase, path: remove_trailing_slash(uri),
-           headers: headers, body: options[:content]) }
+        handle_throttling do
+          send('api_struct_' + method.downcase, path: remove_trailing_slash(uri),
+                                                headers: headers, body: options[:content])
+        end
       end
 
       def get(**options)
