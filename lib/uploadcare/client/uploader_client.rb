@@ -12,9 +12,7 @@ module Uploadcare
       # @see https://uploadcare.com/api-refs/upload-api/#operation/baseUpload
 
       def upload_many(arr, **options)
-        body = HTTP::FormData::Multipart.new(
-          Param::Upload::UploadParamsGenerator.call(options[:store]).merge(files_formdata(arr))
-        )
+        body = upload_many_body(arr, **options)
         post(path: 'base/',
              headers: { 'Content-type': body.content_type },
              body: body)
@@ -73,13 +71,16 @@ module Uploadcare
         get(path: 'from_url/status/', params: query_params)
       end
 
-      # Convert
+      # Prepares body for upload_many method
 
-      def files_formdata(arr)
-        arr.map do |file|
+      def upload_many_body(arr, **options)
+        files_formdata = arr.map do |file|
           [HTTP::FormData::File.new(file).filename,
            HTTP::FormData::File.new(file)]
         end .to_h
+        HTTP::FormData::Multipart.new(
+          Param::Upload::UploadParamsGenerator.call(options[:store]).merge(files_formdata)
+        )
       end
     end
   end
