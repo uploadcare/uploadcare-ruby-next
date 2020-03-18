@@ -1,9 +1,23 @@
 # frozen_string_literal: true
 
-Gem.find_files('ruby/**/*.rb').each { |path| require path }
-Gem.find_files('exception/**/*.rb').each { |path| require path }
+# Gem version
+require 'ruby/version'
+
+# Exceptions
+require 'exception/throttle_error'
+require 'exception/request_error'
+
+# Entities
 require 'entity/entity'
-Gem.find_files('entity/**/*.rb').each { |path| require path }
+require 'entity/file'
+require 'entity/file_list'
+require 'entity/group'
+require 'entity/group_list'
+require 'entity/project'
+require 'entity/uploader'
+require 'entity/webhook'
+
+# General api
 require 'api/api'
 
 # Ruby wrapper for Uploadcare API
