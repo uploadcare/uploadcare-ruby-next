@@ -38,7 +38,7 @@ module Uploadcare
 
       def upload_complete(uuid)
         body = HTTP::FormData::Multipart.new(
-          'UPLOADCARE_PUB_KEY': Uploadcare.configuration.public_key,
+          'UPLOADCARE_PUB_KEY': Uploadcare.config.public_key,
           'uuid': uuid
         )
         post(path: 'multipart/complete/', body: body, headers: { 'Content-type': body.content_type })
@@ -50,7 +50,7 @@ module Uploadcare
         store = '1' if store == true
         store = '0' if store == false
         {
-          'UPLOADCARE_PUB_KEY': Uploadcare.configuration.public_key,
+          'UPLOADCARE_PUB_KEY': Uploadcare.config.public_key,
           'UPLOADCARE_STORE': store
         }
       end

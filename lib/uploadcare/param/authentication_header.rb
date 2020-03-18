@@ -9,13 +9,13 @@ module Uploadcare
     class AuthenticationHeader
       # @see https://uploadcare.com/docs/api_reference/rest/requests_auth/#auth-uploadcare
       def self.call(**options)
-        case Uploadcare.configuration.auth_type
+        case Uploadcare.config.auth_type
         when 'Uploadcare'
           SecureAuthHeader.call(options)
         when 'Uploadcare.Simple'
           SimpleAuthHeader.call
         else
-          raise ArgumentError, "Unknown auth_scheme: '#{Uploadcare.configuration.auth_type}'"
+          raise ArgumentError, "Unknown auth_scheme: '#{Uploadcare.config.auth_type}'"
         end
       end
     end

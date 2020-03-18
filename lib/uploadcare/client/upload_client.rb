@@ -10,7 +10,22 @@ module Uploadcare
       include Concerns::ErrorHandler
       include Concerns::ThrottleHandler
       include Exception
-      upload_api
+
+      def api_root
+        Uploadcare.config.upload_api_root
+      end
+
+      def headers
+        {
+          'User-Agent': Uploadcare::Param::UserAgent.call
+        }
+      end
+
+      private
+
+      def default_params
+        {}
+      end
     end
   end
 end

@@ -9,8 +9,8 @@ module Uploadcare
     describe 'signature' do
       before(:each) do
         allow(Time).to receive(:now).and_return(Time.parse('2017.02.02 12:58:50 +0000'))
-        Uploadcare.configuration.public_key = 'pub'
-        Uploadcare.configuration.secret_key = 'priv'
+        Uploadcare.config.public_key = 'pub'
+        Uploadcare.config.secret_key = 'priv'
       end
 
       it 'returns correct headers for complex authentication' do

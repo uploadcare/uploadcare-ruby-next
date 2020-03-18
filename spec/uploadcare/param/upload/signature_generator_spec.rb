@@ -14,7 +14,7 @@ module Uploadcare
 
         before do
           allow(Time).to receive(:now).and_return(expires_at - 60 * 30)
-          Uploadcare.configuration.secret_key = 'project_secret_key'
+          Uploadcare.config.secret_key = 'project_secret_key'
         end
 
         it 'generates body params needed for signing uploads' do

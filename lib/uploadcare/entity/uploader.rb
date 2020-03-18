@@ -65,7 +65,7 @@ module Uploadcare
 
         # check if object needs to be uploaded using multipart upload
         def big_file?(object)
-          file?(object) && object.size >= Uploadcare.configuration.multipart_size_threshold
+          file?(object) && object.size >= Uploadcare.config.multipart_size_threshold
         end
       end
     end

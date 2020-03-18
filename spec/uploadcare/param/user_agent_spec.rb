@@ -13,9 +13,9 @@ module Uploadcare
     end
 
     it 'contains framework data when it is specified' do
-      Uploadcare.configuration.framework_data = 'Rails'
+      Uploadcare.config.framework_data = 'Rails'
       expect(subject.call).to include('; Rails')
-      Uploadcare.configuration.framework_data = ''
+      Uploadcare.config.framework_data = ''
       expect(subject.call).not_to include(';')
     end
   end

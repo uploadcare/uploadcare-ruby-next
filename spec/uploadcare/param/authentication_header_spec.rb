@@ -13,9 +13,9 @@ module Uploadcare
     end
 
     it 'decides which header to use depending on configuration' do
-      Uploadcare.configuration.auth_type = 'Uploadcare.Simple'
+      Uploadcare.config.auth_type = 'Uploadcare.Simple'
       expect(subject.call).to eq('SimpleAuth called')
-      Uploadcare.configuration.auth_type = 'Uploadcare'
+      Uploadcare.config.auth_type = 'Uploadcare'
       expect(subject.call).to eq('SecureAuth called')
     end
   end

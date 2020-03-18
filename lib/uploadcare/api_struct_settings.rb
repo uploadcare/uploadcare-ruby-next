@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'uploadcare_configuration'
-require 'default_configuration'
 require 'param/user_agent'
 
 # File with api endpoints
@@ -9,7 +8,7 @@ require 'param/user_agent'
 ApiStruct::Settings.configure do |config|
   config.endpoints = {
     rest_api: {
-      root: Uploadcare.configuration.rest_api_root,
+      root: Uploadcare.config.rest_api_root,
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/vnd.uploadcare-v0.5+json',
@@ -17,7 +16,7 @@ ApiStruct::Settings.configure do |config|
       }
     },
     upload_api: {
-      root: Uploadcare.configuration.upload_api_root,
+      root: Uploadcare.config.upload_api_root,
       headers: {
         'User-Agent': Uploadcare::Param::UserAgent.call
       }

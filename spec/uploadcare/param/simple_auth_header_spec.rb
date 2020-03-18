@@ -8,9 +8,9 @@ module Uploadcare
     subject { Uploadcare::Param::SimpleAuthHeader }
     describe 'Uploadcare.Simple' do
       before do
-        Uploadcare.configuration.public_key = 'foo'
-        Uploadcare.configuration.secret_key = 'bar'
-        Uploadcare.configuration.auth_type = 'Uploadcare.Simple'
+        Uploadcare.config.public_key = 'foo'
+        Uploadcare.config.secret_key = 'bar'
+        Uploadcare.config.auth_type = 'Uploadcare.Simple'
       end
 
       it 'returns correct headers for simple authentication' do

@@ -14,7 +14,7 @@ module Uploadcare
 
       def create(file_list, **options)
         body_hash = {
-          pub_key: Uploadcare.configuration.public_key
+          pub_key: Uploadcare.config.public_key
         }.merge(file_params(file_list)).merge(options)
         body = HTTP::FormData::Multipart.new(body_hash)
         post(path: 'group/',
@@ -26,7 +26,7 @@ module Uploadcare
       # @see https://uploadcare.com/api-refs/upload-api/#operation/filesGroupInfo
 
       def info(group_id)
-        get(path: 'group/info/', params: { 'pub_key': Uploadcare.configuration.public_key, 'group_id': group_id })
+        get(path: 'group/info/', params: { 'pub_key': Uploadcare.config.public_key, 'group_id': group_id })
       end
 
       private
