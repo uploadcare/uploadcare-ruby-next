@@ -8,10 +8,8 @@ module Uploadcare
     # You can create one from a set of files by using their UUIDs.
     # @see https://uploadcare.com/docs/api_reference/upload/groups/
     class GroupClient < UploadClient
-
       # Create files group from a set of files by using their UUIDs.
       # @see https://uploadcare.com/api-refs/upload-api/#operation/createFilesGroup
-
       def create(file_list, **options)
         body_hash = {
           pub_key: Uploadcare.config.public_key
@@ -24,7 +22,6 @@ module Uploadcare
 
       # Get group info
       # @see https://uploadcare.com/api-refs/upload-api/#operation/filesGroupInfo
-
       def info(group_id)
         get(path: 'group/info/', params: { 'pub_key': Uploadcare.config.public_key, 'group_id': group_id })
       end

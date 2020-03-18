@@ -32,12 +32,8 @@ module Uploadcare
       # - filename
       # - save_URL_duplicates
       # - async - returns upload token instead of upload data
-
       def upload_from_url(url, **options)
-        body = HTTP::FormData::Multipart.new({
-          'pub_key': Uploadcare.config.public_key,
-          'source_url': url
-        }.merge(options))
+        body = upload_from_url_body(url, **options)
         token_response = post(path: 'from_url/', headers: { 'Content-type': body.content_type }, body: body)
         return token_response if options[:async]
 
@@ -65,14 +61,14 @@ module Uploadcare
       end
 
       # Check upload status
-
+      #
+      # @see https://uploadcare.com/api-refs/upload-api/#operation/fromURLUploadStatus
       def get_status_response(token)
         query_params = { token: token }
         get(path: 'from_url/status/', params: query_params)
       end
 
       # Prepares body for upload_many method
-
       def upload_many_body(arr, **options)
         files_formdata = arr.map do |file|
           [HTTP::FormData::File.new(file).filename,
@@ -81,6 +77,14 @@ module Uploadcare
         HTTP::FormData::Multipart.new(
           Param::Upload::UploadParamsGenerator.call(options[:store]).merge(files_formdata)
         )
+      end
+
+      # Prepare upload_from_url initial request body
+      def upload_from_url_body(url, **options)
+        HTTP::FormData::Multipart.new({
+          'pub_key': Uploadcare.config.public_key,
+          'source_url': url
+        }.merge(**options))
       end
     end
   end

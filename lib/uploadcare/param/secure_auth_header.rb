@@ -20,17 +20,17 @@ module Uploadcare
         }
       end
 
-      protected
+      class << self
+        def signature
+          content_md5 = Digest::MD5.hexdigest(@body)
+          sign_string = [@method, content_md5, @content_type, @date_for_header, @uri].join("\n")
+          digest = OpenSSL::Digest.new('sha1')
+          OpenSSL::HMAC.hexdigest(digest, Uploadcare.config.secret_key, sign_string)
+        end
 
-      def self.signature
-        content_md5 = Digest::MD5.hexdigest(@body)
-        sign_string = [@method, content_md5, @content_type, @date_for_header, @uri].join("\n")
-        digest = OpenSSL::Digest.new('sha1')
-        OpenSSL::HMAC.hexdigest(digest, Uploadcare.config.secret_key, sign_string)
-      end
-
-      def self.timestamp
-        Time.now.gmtime.strftime('%a, %d %b %Y %H:%M:%S GMT')
+        def timestamp
+          Time.now.gmtime.strftime('%a, %d %b %Y %H:%M:%S GMT')
+        end
       end
     end
   end

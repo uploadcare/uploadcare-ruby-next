@@ -18,8 +18,8 @@ module Uploadcare
       alias api_struct_put put
 
       # Send request with authentication header
+      #
       # Handle throttling as well
-
       def request(method: 'GET', uri:, **options)
         headers = Param::AuthenticationHeader.call(method: method.upcase, uri: uri, **options)
         handle_throttling do
