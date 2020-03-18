@@ -8,12 +8,7 @@ module Uploadcare
     # This is client for general uploads
     #
     # @see https://uploadcare.com/api-refs/upload-api/#tag/Upload
-    class UploaderClient < ApiStruct::Client
-      include Concerns::ErrorHandler
-      include Concerns::ThrottleHandler
-      include Exception
-      upload_api
-
+    class UploaderClient < UploadClient
       # @see https://uploadcare.com/api-refs/upload-api/#operation/baseUpload
 
       def upload_many(arr, **options)

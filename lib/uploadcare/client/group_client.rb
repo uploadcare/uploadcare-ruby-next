@@ -7,9 +7,7 @@ module Uploadcare
     # Groups serve a purpose of better organizing files in your Uploadcare projects.
     # You can create one from a set of files by using their UUIDs.
     # @see https://uploadcare.com/docs/api_reference/upload/groups/
-    class GroupClient < ApiStruct::Client
-      upload_api
-      include Concerns::ErrorHandler
+    class GroupClient < UploadClient
 
       # Create files group from a set of files by using their UUIDs.
       # @see https://uploadcare.com/api-refs/upload-api/#operation/createFilesGroup

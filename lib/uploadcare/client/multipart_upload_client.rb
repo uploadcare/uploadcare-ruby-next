@@ -7,11 +7,8 @@ require 'client/multipart_upload/chunks_client'
 module Uploadcare
   module Client
     # Client for multipart uploads
-    class MultipartUploaderClient < ApiStruct::Client
+    class MultipartUploaderClient < UploadClient
       include MultipartUpload
-      include Concerns::ErrorHandler
-      include Concerns::ThrottleHandler
-      upload_api
 
       # Upload a big file by splitting it into parts and sending those parts into assigned buckets
       # object should be File
