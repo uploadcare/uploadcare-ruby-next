@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'rest_client'
+require 'param/user_agent'
 
 module Uploadcare
   module Client
