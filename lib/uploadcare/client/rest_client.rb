@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'rest_client'
 require 'uploadcare/concern/error_handler'
 require 'uploadcare/concern/throttle_handler'
 

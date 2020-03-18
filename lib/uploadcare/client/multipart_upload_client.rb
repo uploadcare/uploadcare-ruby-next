@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'client/multipart_upload/chunks_client'
+require_relative 'rest_client'
 
 module Uploadcare
   module Client
