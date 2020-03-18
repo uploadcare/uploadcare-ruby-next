@@ -7,7 +7,7 @@ require 'client/multipart_upload/chunks_client'
 module Uploadcare
   module Client
     # Client for multipart uploads
-    class MultipartUploadClient < ApiStruct::Client
+    class MultipartUploaderClient < ApiStruct::Client
       include MultipartUpload
       include Concerns::ErrorHandler
       include Concerns::ThrottleHandler

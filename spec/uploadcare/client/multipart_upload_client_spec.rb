@@ -4,8 +4,8 @@ require 'spec_helper'
 
 module Uploadcare
   module Client
-    RSpec.describe MultipartUploadClient do
-      subject { MultipartUploadClient.new }
+    RSpec.describe MultipartUploaderClient do
+      subject { MultipartUploaderClient.new }
       let!(:small_file) { ::File.open('spec/fixtures/kitten.jpeg') }
       # Replace this file with actual big file when rewriting fixtures
       let!(:big_file) { ::File.open('spec/fixtures/big.jpeg') }

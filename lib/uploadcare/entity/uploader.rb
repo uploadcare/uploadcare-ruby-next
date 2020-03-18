@@ -5,8 +5,8 @@ module Uploadcare
     # This serializer lets user upload files by various means, and usually returns an array of files
     # @see https://uploadcare.com/api-refs/upload-api/#tag/Upload
     class Uploader < Entity
-      client_service UploadClient
-      client_service MultipartUploadClient, only: :upload, prefix: :multipart
+      client_service UploaderClient
+      client_service MultipartUploaderClient, only: :upload, prefix: :multipart
 
       attr_entity :files
       has_entities :files, as: Uploadcare::Entity::File
@@ -32,26 +32,26 @@ module Uploadcare
 
       # upload single file
       def self.upload_file(file, **options)
-        response = UploadClient.new.upload_many([file], **options)
+        response = UploaderClient.new.upload_many([file], **options)
         Uploadcare::Entity::File.info(response.success.to_a.flatten[-1])
       end
 
       # upload multiple files
       def self.upload_files(arr, **options)
-        response = UploadClient.new.upload_many(arr, **options)
+        response = UploaderClient.new.upload_many(arr, **options)
         response.success.map { |pair| Uploadcare::Entity::File.new(uuid: pair[1], original_filename: pair[0]) }
       end
 
       # upload file of size above 10mb (involves multipart upload)
       def self.upload_big_file(file, **_options)
-        response = MultipartUploadClient.new.upload(file)
+        response = MultipartUploaderClient.new.upload(file)
         Uploadcare::Entity::File.new(response.success)
       end
 
       # upload files from url
       # @param url [String]
       def self.upload_from_url(url, **options)
-        response = UploadClient.new.upload_from_url(url, **options)
+        response = UploaderClient.new.upload_from_url(url, **options)
         response.success[:files].map { |file_data| Uploadcare::Entity::File.new(file_data) }
       end
 

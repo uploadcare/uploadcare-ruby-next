@@ -8,7 +8,7 @@ module Uploadcare
     # This is client for general uploads
     #
     # @see https://uploadcare.com/api-refs/upload-api/#tag/Upload
-    class UploadClient < ApiStruct::Client
+    class UploaderClient < ApiStruct::Client
       include Concerns::ErrorHandler
       include Concerns::ThrottleHandler
       include Exception
