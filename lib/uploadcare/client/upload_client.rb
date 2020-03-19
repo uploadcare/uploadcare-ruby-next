@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'rest_client'
 require 'param/user_agent'
+require 'uploadcare/concern/error_handler'
+require 'uploadcare/concern/throttle_handler'
 
 module Uploadcare
   module Client

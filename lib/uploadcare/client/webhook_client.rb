@@ -17,14 +17,14 @@ module Uploadcare
       # Returns array (not paginated list) of webhooks
       # @see https://uploadcare.com/docs/api_reference/rest/webhooks/#get-list
       def list
-        get(uri: '/webhooks/', headers: headers)
+        get(uri: '/webhooks/')
       end
 
       # Permanently deletes subscription
       # @see https://uploadcare.com/docs/api_reference/rest/webhooks/#unsubscribe
       def delete(name)
         body = { 'name': name }.to_json
-        post(uri: '/webhooks/unsubscribe/', headers: headers, content: body)
+        post(uri: '/webhooks/unsubscribe/', content: body)
       end
 
       # Updates webhook

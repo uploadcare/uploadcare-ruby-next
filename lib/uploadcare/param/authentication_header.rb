@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'digest/md5'
+require 'param/secure_auth_header'
+require 'param/simple_auth_header'
 
 module Uploadcare
   module Param
@@ -11,7 +13,7 @@ module Uploadcare
       def self.call(**options)
         case Uploadcare.config.auth_type
         when 'Uploadcare'
-          SecureAuthHeader.call(options)
+          SecureAuthHeader.call(**options)
         when 'Uploadcare.Simple'
           SimpleAuthHeader.call
         else

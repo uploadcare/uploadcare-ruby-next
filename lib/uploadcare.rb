@@ -27,7 +27,7 @@ module Uploadcare
   extend Dry::Configurable
   setting :public_key, ENV.fetch('UPLOADCARE_PUBLIC_KEY')
   setting :secret_key, ENV.fetch('UPLOADCARE_SECRET_KEY')
-  setting :auth_type, 'Uploadcare.Simple'
+  setting :auth_type, 'Uploadcare'
   setting :multipart_size_threshold, 100 * 1024 * 1024
   setting :rest_api_root, 'https://api.uploadcare.com'
   setting :upload_api_root, 'https://upload.uploadcare.com'

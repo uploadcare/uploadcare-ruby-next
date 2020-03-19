@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'uploadcare/entity/group'
+require 'uploadcare/entity/decorator/paginator'
 
 module Uploadcare
   module Entity

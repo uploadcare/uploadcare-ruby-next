@@ -8,11 +8,11 @@ module Uploadcare
     # This authentication method is more secure, but more tedious
     class SecureAuthHeader
       # @see https://uploadcare.com/docs/api_reference/rest/requests_auth/#auth-uploadcare
-      def self.call(method: 'GET', body: '', content_type: 'application/json', uri: '')
-        @method = method
-        @body = body
-        @content_type = content_type
-        @uri = uri
+      def self.call(**options)
+        @method = options[:method]
+        @body = options[:content] || ''
+        @content_type = options[:content_type]
+        @uri = options[:uri]
         @date_for_header = timestamp
         {
           'Date': @date_for_header,
