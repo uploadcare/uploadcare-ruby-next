@@ -20,8 +20,8 @@ module Uploadcare
       def self.call(**params)
         path = ''
         params.each do |key, val|
-          path = path + "-\/#{key}\/"
-          path = path + "#{val}\/" if val && val != true
+          path += "-\/#{key}\/"
+          path += "#{val}\/" if val && val != true
         end
         path
       end

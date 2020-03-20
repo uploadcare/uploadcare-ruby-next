@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/uploadcare/uploadcare-ruby/tree/develop)
 
+- Added configurable cdn_url method to File
+
 [Full Changelog](https://github.com/uploadcare/uploadcare-ruby/compare/0baded5593869f1d741f0fff22c58814970726b2...HEAD)
 
 ## [3.0.4-dev] 2020-03-19
